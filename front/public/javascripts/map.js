@@ -7,15 +7,14 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 
 var bicycles = JSON.parse(document.currentScript.dataset.var);
-var markers = L.featureGroup();
+
 
 console.log(bicycles)
 
 bicycles.forEach(element => {
     
     L.marker([element.latitud, element.longitud]).addTo(map);
-    L.marker([element.latitud, element.longitud]).addTo(markers);
+
 });
 
 
-map.fitBounds(markers.getBounds());
