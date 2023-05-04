@@ -1,7 +1,7 @@
 # compiled output
 /dist
 tu.sqlite
-./redbicicletas/crud/database/bicicletas.db
+
 
 # Logs
 logs
