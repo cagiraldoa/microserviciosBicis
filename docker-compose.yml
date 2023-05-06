@@ -1,16 +1,29 @@
 version: '3.1'
 services:
   frontend:
-    build: front
+    build: ./front
     ports:
-      - 3100:3100
+      - "3100:3100"
     depends_on:
       - backend
+    restart: always
   backend:
-    build: back
+    build: ./back
     ports:
-      - 3000:3000
-
-    
-    
-    
+      - "3000:3000"
+    restart: always
+    healthcheck:
+      test: ["CMD", "powershell", "-command", "if ((Invoke-WebRequest http://localhost:3000/api/healthcheck -UseBasicParsing -ErrorAction Stop).StatusCode -ne 200) { exit 1 }"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  load_balancer:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
+    restart: always

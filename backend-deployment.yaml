@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: microserviciosbicicleta-backend:v2
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: QA
+        - name: PORT
+          value: "3000"

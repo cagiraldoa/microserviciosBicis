@@ -17,6 +17,9 @@ const table = require('./database/db.js');
 
 let app = express();
 
+app.get("/api/healthcheck", (req, res) => {
+  res.sendStatus(200);
+});
 
 app.use(logger('dev'));
 app.use(express.json());

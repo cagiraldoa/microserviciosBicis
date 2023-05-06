@@ -9,4 +9,6 @@ router.put("/api/bicicletas/:id/update", bicicletaController.update);
 router.delete("/api/bicicletas/:id/delete", bicicletaController.delete);
 router.put("/api/bicicletas/:id/alquilar", bicicletaController.alquilar);
 
+
+
 module.exports = router;
