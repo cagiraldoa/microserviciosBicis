@@ -37,6 +37,10 @@ app.get( '/auth/google/callback',
   })
 );
 
+app.get('/protected', isLoggedIn, (req, res) => {
+
+  res.send(`Hello ${JSON.stringify(req.user)}`);
+});
 
 
 app.get('/logout', (req, res) => {
@@ -45,6 +49,10 @@ app.get('/logout', (req, res) => {
       res.redirect('/');
     });
   });
+});
+
+app.get('/auth/google/failure', (req, res) => {
+  res.send('Failed to authenticate..');
 });
 
 // view engine setup

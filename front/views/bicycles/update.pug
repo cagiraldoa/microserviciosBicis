@@ -1,33 +1,31 @@
 extends ../layout
 
 block content
-  a(href='/bicicletas') Volver
+  a.btn.btn-secondary.mb-3(href='/bicicletas') Volver
   br
   br
   br
-  h1 Actualizar bicicleta # #{bici.id}
+  h1(style='text-align: center;') Actualizar bicicleta # #{bici.id}
   br
   br
-  form(action='/bicicletas/:id/update' method='post')
+  form(action='/bicicletas/:id/update' method='post' style='display: flex; flex-direction: column; align-items: center;')
     input(type='hidden' name='id', value=bici.id)
     br
-    label(for='color') Color:
-    select(name='color' id='', selected=bici.color ,required)
+    label(for='color', style='margin-right: 10px; font-size: 18px;') Color:
+    select(name='color' id='', selected=bici.color ,required style='margin-right: 10px; font-size: 16px;')
       each val in ['--select--','Blanco' , 'Negro' , 'Rojo','Verde']
         option=val
-    //input#id(type='text' name='color', required)
     br
-    label(for='modelo') Modelo:
-    select(name='modelo' id='', required)
+    label(for='modelo', style='margin-right: 10px; font-size: 18px;') Modelo:
+    select(name='modelo' id='' required style='margin-right: 10px; font-size: 16px;')
       each val in ['--select--','Ruta' , 'Cross' , 'Montian','Turismo']
         option=val
-    //input#id(type='text' name='modelo',required)
     br
-    label(for='lat') Latitud:
-    input#id(type='text' name='lat', value=bici.latitud, required)
+    label(for='lat', style='margin-right: 10px; font-size: 18px;') Latitud:
+    input#id(type='text' name='lat', value=bici.latitud, required style='margin-right: 10px; font-size: 16px;')
     br
-    label(for='lng') Longitud:
-    input#id(type='text' name='lng', value=bici.longitud, required)
+    label(for='lng', style='margin-right: 10px; font-size: 18px;') Longitud:
+    input#id(type='text' name='lng', value=bici.longitud, required style='margin-right: 10px; font-size: 16px;')
     br
     br
-    input.btn(type='submit' name='OK' )
+    input.btn(type='submit' name='OK' style='background-color: #007bff; border-color: #007bff; color: white; font-size: 16px; padding: 8px 16px; border-radius: 4px;')

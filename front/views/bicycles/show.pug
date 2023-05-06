@@ -2,25 +2,30 @@ extend ../layout
 
 block content
 
-  a(href='http://localhost:3000/bicicletas') Home
+  a.btn.btn-secondary.mb-3(href='http://localhost:3100/bicicletas') Home
   br
-  h1 Bicicleta # #{bici.id}
-  br
-  h2 Datos de la bicicleta
-  br
-  table.table
-    thead
-      tr
-        th(scope='col') #Id
-        th(scope='col') Color
-        th(scope='col') Modelo
-        th(scope='col') Ubicacion
-    tbody
-      tr
-        td(scope='row')=bici.id
-        td=bici.color
-        td=bici.modelo
-        td=bici.latitud + ", "+ bici.longitud
-        td
-          a(href='/bicicletas/'+bici.id+'/update') editar
-        td
+  h1.text-center Bicicleta #{bici.id}
+  hr
+  div.row.text-center
+    div.col-md-8.mx-auto
+      table.table.table-bordered.table-striped
+        tbody
+          tr
+            td(style='width: 30%') Color:
+            td(style='width: 70%')=bici.color
+          tr
+            td Modelo:
+            td=bici.modelo
+          tr
+            td Ubicación:
+            td
+              span#lat(style='display: none')=bici.latitud
+              span#lng(style='display: none')=bici.longitud
+              div#map(style='width: 100%; height: 250px')
+          tr
+            td Acciones:
+            td
+              a.btn.btn-primary.mx-2(href='/bicicletas/'+bici.id+'/update') Editar
+              form.inline(style='display: inline-block', method='post', action='/bicicletas/'+bici.id+'/delete')
+                input(type='hidden', name='id', value=bici.id)
+                button.btn.btn-danger.mx-2(type='submit', name='submit_param', value='submit_value') Eliminar

@@ -7,6 +7,8 @@ let db = new sqlite3.Database('./database/bicicletas.db', (err) => {
   console.log('Connected to the database');
 });
 
+
+
 let Bicicleta = function(id, color, modelo, latitud, longitud, alquilada) {
   this.id = id;
   this.color = color;
@@ -15,6 +17,16 @@ let Bicicleta = function(id, color, modelo, latitud, longitud, alquilada) {
   this.longitud = longitud;
   this.alquilada = alquilada;
 };
+
+Bicicleta.bicisCount = function(callback) {
+  db.get(`SELECT MAX(id) as max_value FROM bicicletas`, [], (err, row) => {
+    if (err) {
+      return callback(err);
+    }
+    return callback(null, row.max_value);
+  });
+};
+
 
 Bicicleta.prototype.toString = function() {
   return `id: ${this.id}| color: ${this.color}`;
